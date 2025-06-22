@@ -1,0 +1,111 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "91c00e9e-6bbe-49d4-aab2-bd6a37f5b31b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "efb8758c-e152-4aae-a1b3-9156b5098add",
+              "name": "subject",
+              "value": "TIME TO WRITE YOUR SLAM",
+              "type": "string"
+            },
+            {
+              "id": "a2fd4f23-e72d-40e7-aff8-c770a82c9439",
+              "name": "BODY",
+              "value": "=Hi! ✍  It's 8 PM — time to write your journal for today: {{$now}}  1️⃣ What made you smile today? 2️⃣ What did you learn today? 3️⃣ What will you improve tomorrow?  \"Believe you can and you're halfway there.\" — Theodore Roosevelt  Happy journaling!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "5c1d5e32-2f88-4c9b-a060-7a8e2fa8796b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "sendTo": "nmegavarshini4@gmail.com",
+        "subject": "={{$json[\"subject\"]}} ",
+        "emailType": "text",
+        "message": "=\"Hi! ✍  It's 8 PM — time to write your journal for today: 2025-06-22T12:01:48.028+05:30  1️⃣ What made you smile today? 2️⃣ What did you learn today? 3️⃣ What will you improve tomorrow?  \"Believe you can and you're halfway there.\" — Theodore Roosevelt  Happy journaling!\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "9b496c7b-303c-4f94-b18e-504a6f28ecbf",
+      "name": "Gmail",
+      "webhookId": "1bfa4995-5257-41a6-b2b8-b0d997568438",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "wMRKF6K3bw1jUkrp",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "cb8da524-0297-49a5-b621-8b0acf81aa0e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5c6c4e7c877d609151ac43777e99ac77e63547f6546d298a015439fa5068b53f"
+  },
+  "id": "teV38gfb196TiNVP",
+  "tags": []
+}
